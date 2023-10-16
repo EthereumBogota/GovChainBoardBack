@@ -1,2 +1,4 @@
-node_modules
+.idea/
+/poetry.lock
+node_modules/
 .env
