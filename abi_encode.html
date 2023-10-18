@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+        type="application/javascript"></script>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+          getData = async () => {
+            const abiCoder = new ethers.utils.AbiCoder();
+            const data = abiCoder.encode(
+              ["address"],
+              ["0xfD583EBd734ebd88091449712933F4c595bbD8f8"]
+            );
+            console.log(data);
+          };
+
+          getData();
+</script>
+</body>
+</html>

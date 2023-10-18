@@ -1,0 +1,53 @@
+{
+	"compiler": {
+		"version": "0.5.16+commit.9c3226ce"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getTimeStamop",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Utils.sol": "Utils"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Utils.sol": {
+			"keccak256": "0xcdfc330dd97da9a8e20448e1e7e6afc95037a894c494f791b8d129465626ff1e",
+			"urls": [
+				"bzz-raw://000b1275b58c042614a66fb209eb6c6509179059314ca93d347e2f1feab4d718",
+				"dweb:/ipfs/QmXWXtQzq1zMK87E7BE1JCsJivAZRYBAwBJMGcyLgeLDr1"
+			]
+		}
+	},
+	"version": 1
+}

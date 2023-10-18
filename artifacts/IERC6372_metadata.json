@@ -1,0 +1,78 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "CLOCK_MODE",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "clock",
+				"outputs": [
+					{
+						"internalType": "uint48",
+						"name": "",
+						"type": "uint48"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"CLOCK_MODE()": {
+					"details": "Description of the clock"
+				},
+				"clock()": {
+					"details": "Clock used for flagging checkpoints. Can be overridden to implement timestamp based checkpoints (and voting)."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"token_GCB_flattened.sol": "IERC6372"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"token_GCB_flattened.sol": {
+			"keccak256": "0x65ebecafceeb1a892b73bc769610ea8dec5ecde6f40de97ab9f7c07beb532a08",
+			"urls": [
+				"bzz-raw://7101d166017e923ea5ae1179ac6e735f3a9c642c6326f1d8b233c9b3798026eb",
+				"dweb:/ipfs/QmVnfDkQCQ3hQ4sZTMoL4KtLqkqE1ZWi9Jy2YBtoWNTfW9"
+			]
+		}
+	},
+	"version": 1
+}

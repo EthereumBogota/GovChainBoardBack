@@ -1,0 +1,69 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "length",
+						"type": "uint256"
+					}
+				],
+				"name": "StringsInsufficientHexLength",
+				"type": "error"
+			}
+		],
+		"devdoc": {
+			"details": "String operations.",
+			"errors": {
+				"StringsInsufficientHexLength(uint256,uint256)": [
+					{
+						"details": "The `value` string doesn't fit in the specified `length`."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"token_GCB_flattened.sol": "Strings"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"token_GCB_flattened.sol": {
+			"keccak256": "0x65ebecafceeb1a892b73bc769610ea8dec5ecde6f40de97ab9f7c07beb532a08",
+			"urls": [
+				"bzz-raw://7101d166017e923ea5ae1179ac6e735f3a9c642c6326f1d8b233c9b3798026eb",
+				"dweb:/ipfs/QmVnfDkQCQ3hQ4sZTMoL4KtLqkqE1ZWi9Jy2YBtoWNTfW9"
+			]
+		}
+	},
+	"version": 1
+}
