@@ -1,6 +1,7 @@
 import { newMockEvent } from "matchstick-as"
 import { ethereum, BigInt, Address, Bytes } from "@graphprotocol/graph-ts"
 import {
+  EIP712DomainChanged,
   ProposalCanceled,
   ProposalCreated,
   ProposalExecuted,
@@ -12,7 +13,15 @@ import {
   VoteCastWithParams,
   VotingDelaySet,
   VotingPeriodSet
-} from "../generated/Contract/Contract"
+} from "../generated/Governor/Governor"
+
+export function createEIP712DomainChangedEvent(): EIP712DomainChanged {
+  let eip712DomainChangedEvent = changetype<EIP712DomainChanged>(newMockEvent())
+
+  eip712DomainChangedEvent.parameters = new Array()
+
+  return eip712DomainChangedEvent
+}
 
 export function createProposalCanceledEvent(
   proposalId: BigInt
@@ -38,8 +47,8 @@ export function createProposalCreatedEvent(
   values: Array<BigInt>,
   signatures: Array<string>,
   calldatas: Array<Bytes>,
-  startBlock: BigInt,
-  endBlock: BigInt,
+  voteStart: BigInt,
+  voteEnd: BigInt,
   description: string
 ): ProposalCreated {
   let proposalCreatedEvent = changetype<ProposalCreated>(newMockEvent())
@@ -78,14 +87,14 @@ export function createProposalCreatedEvent(
   )
   proposalCreatedEvent.parameters.push(
     new ethereum.EventParam(
-      "startBlock",
-      ethereum.Value.fromUnsignedBigInt(startBlock)
+      "voteStart",
+      ethereum.Value.fromUnsignedBigInt(voteStart)
     )
   )
   proposalCreatedEvent.parameters.push(
     new ethereum.EventParam(
-      "endBlock",
-      ethereum.Value.fromUnsignedBigInt(endBlock)
+      "voteEnd",
+      ethereum.Value.fromUnsignedBigInt(voteEnd)
     )
   )
   proposalCreatedEvent.parameters.push(
@@ -117,7 +126,7 @@ export function createProposalExecutedEvent(
 
 export function createProposalQueuedEvent(
   proposalId: BigInt,
-  eta: BigInt
+  etaSeconds: BigInt
 ): ProposalQueued {
   let proposalQueuedEvent = changetype<ProposalQueued>(newMockEvent())
 
@@ -130,7 +139,10 @@ export function createProposalQueuedEvent(
     )
   )
   proposalQueuedEvent.parameters.push(
-    new ethereum.EventParam("eta", ethereum.Value.fromUnsignedBigInt(eta))
+    new ethereum.EventParam(
+      "etaSeconds",
+      ethereum.Value.fromUnsignedBigInt(etaSeconds)
+    )
   )
 
   return proposalQueuedEvent

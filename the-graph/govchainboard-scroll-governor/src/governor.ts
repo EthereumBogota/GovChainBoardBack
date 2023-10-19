@@ -1,4 +1,5 @@
 import {
+  EIP712DomainChanged as EIP712DomainChangedEvent,
   ProposalCanceled as ProposalCanceledEvent,
   ProposalCreated as ProposalCreatedEvent,
   ProposalExecuted as ProposalExecutedEvent,
@@ -10,8 +11,9 @@ import {
   VoteCastWithParams as VoteCastWithParamsEvent,
   VotingDelaySet as VotingDelaySetEvent,
   VotingPeriodSet as VotingPeriodSetEvent
-} from "../generated/Contract/Contract"
+} from "../generated/Governor/Governor"
 import {
+  EIP712DomainChanged,
   ProposalCanceled,
   ProposalCreated,
   ProposalExecuted,
@@ -24,6 +26,20 @@ import {
   VotingDelaySet,
   VotingPeriodSet
 } from "../generated/schema"
+
+export function handleEIP712DomainChanged(
+  event: EIP712DomainChangedEvent
+): void {
+  let entity = new EIP712DomainChanged(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
+
+  entity.save()
+}
 
 export function handleProposalCanceled(event: ProposalCanceledEvent): void {
   let entity = new ProposalCanceled(
@@ -48,8 +64,8 @@ export function handleProposalCreated(event: ProposalCreatedEvent): void {
   entity.values = event.params.values
   entity.signatures = event.params.signatures
   entity.calldatas = event.params.calldatas
-  entity.startBlock = event.params.startBlock
-  entity.endBlock = event.params.endBlock
+  entity.voteStart = event.params.voteStart
+  entity.voteEnd = event.params.voteEnd
   entity.description = event.params.description
 
   entity.blockNumber = event.block.number
@@ -77,7 +93,7 @@ export function handleProposalQueued(event: ProposalQueuedEvent): void {
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
   entity.proposalId = event.params.proposalId
-  entity.eta = event.params.eta
+  entity.etaSeconds = event.params.etaSeconds
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
