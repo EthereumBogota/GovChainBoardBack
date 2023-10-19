@@ -12,7 +12,7 @@ Connecting to Database
 ```
 psql  --host=<DB instance endpoint>  --port=<port>  --username=<master username> --password --dbname=<database name> 
 ```
-psql  --host=govchainboard2.ckody2xernst.us-east-2.rds.amazonaws.com  --port=5432 --username=govchainboard2 --password --dbname=govchainboard2
+psql  --host=govchainboard2.ckody2xernst.us-east-2.rds.amazonaws.com  --port=5432 --username=x --password --dbname=x
 
 
 
