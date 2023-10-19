@@ -3,11 +3,11 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: Contract
+    name: GovernorContract
     network: scroll-sepolia
     source:
       address: "0xC00368C16709c0A5eE9FC3294eA00E351f50Db69"
-      abi: Contract
+      abi: GovernorContract
       startBlock: 1705816
     mapping:
       kind: ethereum/events
@@ -27,8 +27,8 @@ dataSources:
         - VotingDelaySet
         - VotingPeriodSet
       abis:
-        - name: Contract
-          file: ./abis/Contract.json
+        - name: GovernorContract
+          file: ./abis/GovernorContract.json
       eventHandlers:
         - event: EIP712DomainChanged()
           handler: handleEIP712DomainChanged
@@ -54,4 +54,4 @@ dataSources:
           handler: handleVotingDelaySet
         - event: VotingPeriodSet(uint256,uint256)
           handler: handleVotingPeriodSet
-      file: ./src/contract.ts
+      file: ./src/governor-contract.ts
