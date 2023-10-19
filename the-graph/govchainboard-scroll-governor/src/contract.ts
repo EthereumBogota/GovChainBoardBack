@@ -11,7 +11,7 @@ import {
   VoteCastWithParams as VoteCastWithParamsEvent,
   VotingDelaySet as VotingDelaySetEvent,
   VotingPeriodSet as VotingPeriodSetEvent
-} from "../generated/Governor/Governor"
+} from "../generated/Contract/Contract"
 import {
   EIP712DomainChanged,
   ProposalCanceled,

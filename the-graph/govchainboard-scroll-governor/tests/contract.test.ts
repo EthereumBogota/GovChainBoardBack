@@ -8,9 +8,9 @@ import {
 } from "matchstick-as/assembly/index"
 import { BigInt, Address, Bytes } from "@graphprotocol/graph-ts"
 import { EIP712DomainChanged } from "../generated/schema"
-import { EIP712DomainChanged as EIP712DomainChangedEvent } from "../generated/Governor/Governor"
-import { handleEIP712DomainChanged } from "../src/governor"
-import { createEIP712DomainChangedEvent } from "./governor-utils"
+import { EIP712DomainChanged as EIP712DomainChangedEvent } from "../generated/Contract/Contract"
+import { handleEIP712DomainChanged } from "../src/contract"
+import { createEIP712DomainChangedEvent } from "./contract-utils"
 
 // Tests structure (matchstick-as >=0.5.0)
 // https://thegraph.com/docs/en/developer/matchstick/#tests-structure-0-5-0
