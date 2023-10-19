@@ -1,8 +1,8 @@
 {
-  "scroll-sepolia": {
+  "polygon-zkevm": {
     "Contract": {
-      "address": "0xC00368C16709c0A5eE9FC3294eA00E351f50Db69",
-      "startBlock": 1705816
+      "address": "0xD203e37D96cC0b9b7Dc00fC3fDfcf1b1A2E8c547",
+      "startBlock": 34569053
     }
   }
 }

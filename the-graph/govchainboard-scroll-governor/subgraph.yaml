@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: Contract
-    network: scroll-sepolia
+    network: polygon-zkevm
     source:
-      address: "0xC00368C16709c0A5eE9FC3294eA00E351f50Db69"
+      address: "0xD203e37D96cC0b9b7Dc00fC3fDfcf1b1A2E8c547"
       abi: Contract
-      startBlock: 1705816
+      startBlock: 34569053
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
