@@ -1,6 +1,18 @@
-import { BigInt } from "@graphprotocol/graph-ts"
 import {
-  Governor,
+  EIP712DomainChanged as EIP712DomainChangedEvent,
+  ProposalCanceled as ProposalCanceledEvent,
+  ProposalCreated as ProposalCreatedEvent,
+  ProposalExecuted as ProposalExecutedEvent,
+  ProposalQueued as ProposalQueuedEvent,
+  ProposalThresholdSet as ProposalThresholdSetEvent,
+  QuorumNumeratorUpdated as QuorumNumeratorUpdatedEvent,
+  TimelockChange as TimelockChangeEvent,
+  VoteCast as VoteCastEvent,
+  VoteCastWithParams as VoteCastWithParamsEvent,
+  VotingDelaySet as VotingDelaySetEvent,
+  VotingPeriodSet as VotingPeriodSetEvent
+} from "../generated/Governor/Governor"
+import {
   EIP712DomainChanged,
   ProposalCanceled,
   ProposalCreated,
@@ -13,109 +25,188 @@ import {
   VoteCastWithParams,
   VotingDelaySet,
   VotingPeriodSet
-} from "../generated/Governor/Governor"
-import { ExampleEntity } from "../generated/schema"
+} from "../generated/schema"
 
-export function handleEIP712DomainChanged(event: EIP712DomainChanged): void {
-  // Entities can be loaded from the store using a string ID; this ID
-  // needs to be unique across all entities of the same type
-  let entity = ExampleEntity.load(event.transaction.from)
+export function handleEIP712DomainChanged(
+  event: EIP712DomainChangedEvent
+): void {
+  let entity = new EIP712DomainChanged(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
 
-  // Entities only exist after they have been saved to the store;
-  // `null` checks allow to create entities on demand
-  if (!entity) {
-    entity = new ExampleEntity(event.transaction.from)
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
 
-    // Entity fields can be set using simple assignments
-    entity.count = BigInt.fromI32(0)
-  }
-
-  // BigInt and BigDecimal math are supported
-  entity.count = entity.count + BigInt.fromI32(1)
-
-  // Entity fields can be set based on event parameters
-
-  // Entities can be written to the store with `.save()`
   entity.save()
-
-  // Note: If a handler doesn't require existing field values, it is faster
-  // _not_ to load the entity from the store. Instead, create it fresh with
-  // `new Entity(...)`, set the fields that should be updated and save the
-  // entity back to the store. Fields that were not set or unset remain
-  // unchanged, allowing for partial updates to be applied.
-
-  // It is also possible to access smart contracts from mappings. For
-  // example, the contract that has emitted the event can be connected to
-  // with:
-  //
-  // let contract = Contract.bind(event.address)
-  //
-  // The following functions can then be called on this contract to access
-  // state variables and other data:
-  //
-  // - contract.BALLOT_TYPEHASH(...)
-  // - contract.CLOCK_MODE(...)
-  // - contract.COUNTING_MODE(...)
-  // - contract.EXTENDED_BALLOT_TYPEHASH(...)
-  // - contract.cancel(...)
-  // - contract.castVote(...)
-  // - contract.castVoteBySig(...)
-  // - contract.castVoteWithReason(...)
-  // - contract.castVoteWithReasonAndParams(...)
-  // - contract.castVoteWithReasonAndParamsBySig(...)
-  // - contract.clock(...)
-  // - contract.eip712Domain(...)
-  // - contract.getVotes(...)
-  // - contract.getVotesWithParams(...)
-  // - contract.hasVoted(...)
-  // - contract.hashProposal(...)
-  // - contract.name(...)
-  // - contract.nonces(...)
-  // - contract.onERC1155BatchReceived(...)
-  // - contract.onERC1155Received(...)
-  // - contract.onERC721Received(...)
-  // - contract.proposalDeadline(...)
-  // - contract.proposalEta(...)
-  // - contract.proposalNeedsQueuing(...)
-  // - contract.proposalProposer(...)
-  // - contract.proposalSnapshot(...)
-  // - contract.proposalThreshold(...)
-  // - contract.proposalVotes(...)
-  // - contract.propose(...)
-  // - contract.queue(...)
-  // - contract.quorum(...)
-  // - contract.quorumDenominator(...)
-  // - contract.quorumNumerator(...)
-  // - contract.quorumNumerator(...)
-  // - contract.state(...)
-  // - contract.supportsInterface(...)
-  // - contract.timelock(...)
-  // - contract.token(...)
-  // - contract.version(...)
-  // - contract.votingDelay(...)
-  // - contract.votingPeriod(...)
 }
 
-export function handleProposalCanceled(event: ProposalCanceled): void {}
+export function handleProposalCanceled(event: ProposalCanceledEvent): void {
+  let entity = new ProposalCanceled(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.proposalId = event.params.proposalId
 
-export function handleProposalCreated(event: ProposalCreated): void {}
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
 
-export function handleProposalExecuted(event: ProposalExecuted): void {}
+  entity.save()
+}
 
-export function handleProposalQueued(event: ProposalQueued): void {}
+export function handleProposalCreated(event: ProposalCreatedEvent): void {
+  let entity = new ProposalCreated(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.proposalId = event.params.proposalId
+  entity.proposer = event.params.proposer
+  entity.targets = event.params.targets
+  entity.values = event.params.values
+  entity.signatures = event.params.signatures
+  entity.calldatas = event.params.calldatas
+  entity.voteStart = event.params.voteStart
+  entity.voteEnd = event.params.voteEnd
+  entity.description = event.params.description
 
-export function handleProposalThresholdSet(event: ProposalThresholdSet): void {}
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
+
+  entity.save()
+}
+
+export function handleProposalExecuted(event: ProposalExecutedEvent): void {
+  let entity = new ProposalExecuted(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.proposalId = event.params.proposalId
+
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
+
+  entity.save()
+}
+
+export function handleProposalQueued(event: ProposalQueuedEvent): void {
+  let entity = new ProposalQueued(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.proposalId = event.params.proposalId
+  entity.etaSeconds = event.params.etaSeconds
+
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
+
+  entity.save()
+}
+
+export function handleProposalThresholdSet(
+  event: ProposalThresholdSetEvent
+): void {
+  let entity = new ProposalThresholdSet(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.oldProposalThreshold = event.params.oldProposalThreshold
+  entity.newProposalThreshold = event.params.newProposalThreshold
+
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
+
+  entity.save()
+}
 
 export function handleQuorumNumeratorUpdated(
-  event: QuorumNumeratorUpdated
-): void {}
+  event: QuorumNumeratorUpdatedEvent
+): void {
+  let entity = new QuorumNumeratorUpdated(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.oldQuorumNumerator = event.params.oldQuorumNumerator
+  entity.newQuorumNumerator = event.params.newQuorumNumerator
 
-export function handleTimelockChange(event: TimelockChange): void {}
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
 
-export function handleVoteCast(event: VoteCast): void {}
+  entity.save()
+}
 
-export function handleVoteCastWithParams(event: VoteCastWithParams): void {}
+export function handleTimelockChange(event: TimelockChangeEvent): void {
+  let entity = new TimelockChange(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.oldTimelock = event.params.oldTimelock
+  entity.newTimelock = event.params.newTimelock
 
-export function handleVotingDelaySet(event: VotingDelaySet): void {}
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
 
-export function handleVotingPeriodSet(event: VotingPeriodSet): void {}
+  entity.save()
+}
+
+export function handleVoteCast(event: VoteCastEvent): void {
+  let entity = new VoteCast(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.voter = event.params.voter
+  entity.proposalId = event.params.proposalId
+  entity.support = event.params.support
+  entity.weight = event.params.weight
+  entity.reason = event.params.reason
+
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
+
+  entity.save()
+}
+
+export function handleVoteCastWithParams(event: VoteCastWithParamsEvent): void {
+  let entity = new VoteCastWithParams(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.voter = event.params.voter
+  entity.proposalId = event.params.proposalId
+  entity.support = event.params.support
+  entity.weight = event.params.weight
+  entity.reason = event.params.reason
+  entity.params = event.params.params
+
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
+
+  entity.save()
+}
+
+export function handleVotingDelaySet(event: VotingDelaySetEvent): void {
+  let entity = new VotingDelaySet(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.oldVotingDelay = event.params.oldVotingDelay
+  entity.newVotingDelay = event.params.newVotingDelay
+
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
+
+  entity.save()
+}
+
+export function handleVotingPeriodSet(event: VotingPeriodSetEvent): void {
+  let entity = new VotingPeriodSet(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.oldVotingPeriod = event.params.oldVotingPeriod
+  entity.newVotingPeriod = event.params.newVotingPeriod
+
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
+
+  entity.save()
+}

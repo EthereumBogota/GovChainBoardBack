@@ -7,8 +7,8 @@ import {
   afterAll
 } from "matchstick-as/assembly/index"
 import { BigInt, Address, Bytes } from "@graphprotocol/graph-ts"
-import { ExampleEntity } from "../generated/schema"
-import { EIP712DomainChanged } from "../generated/Governor/Governor"
+import { EIP712DomainChanged } from "../generated/schema"
+import { EIP712DomainChanged as EIP712DomainChangedEvent } from "../generated/Governor/Governor"
 import { handleEIP712DomainChanged } from "../src/governor"
 import { createEIP712DomainChangedEvent } from "./governor-utils"
 
@@ -28,8 +28,8 @@ describe("Describe entity assertions", () => {
   // For more test scenarios, see:
   // https://thegraph.com/docs/en/developer/matchstick/#write-a-unit-test
 
-  test("ExampleEntity created and stored", () => {
-    assert.entityCount("ExampleEntity", 1)
+  test("EIP712DomainChanged created and stored", () => {
+    assert.entityCount("EIP712DomainChanged", 1)
 
     // 0xa16081f360e3847006db660bae1c6d1b2e17ec2a is the default address used in newMockEvent() function
 
