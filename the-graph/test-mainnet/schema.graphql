@@ -1,11 +1,3 @@
-type EIP712DomainChanged @entity(immutable: true) {
-  id: Bytes!
-
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
 type ProposalCanceled @entity(immutable: true) {
   id: Bytes!
   proposalId: BigInt! # uint256
@@ -22,8 +14,8 @@ type ProposalCreated @entity(immutable: true) {
   values: [BigInt!]! # uint256[]
   signatures: [String!]! # string[]
   calldatas: [Bytes!]! # bytes[]
-  voteStart: BigInt! # uint256
-  voteEnd: BigInt! # uint256
+  startBlock: BigInt! # uint256
+  endBlock: BigInt! # uint256
   description: String! # string
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -41,7 +33,7 @@ type ProposalExecuted @entity(immutable: true) {
 type ProposalQueued @entity(immutable: true) {
   id: Bytes!
   proposalId: BigInt! # uint256
-  etaSeconds: BigInt! # uint256
+  eta: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!

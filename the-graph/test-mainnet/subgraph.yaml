@@ -6,15 +6,14 @@ dataSources:
     name: Contract
     network: mainnet
     source:
-      address: "0xDA9C9eD96f6D42f7e74f3C7eEa6772d64eD84bdf"
+      address: "0x585CcA060422ef1779Fb0Dd710A49e7C49A823C9"
       abi: Contract
-      startBlock: 16647575
+      startBlock: 14789712
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - EIP712DomainChanged
         - ProposalCanceled
         - ProposalCreated
         - ProposalExecuted
@@ -30,8 +29,6 @@ dataSources:
         - name: Contract
           file: ./abis/Contract.json
       eventHandlers:
-        - event: EIP712DomainChanged()
-          handler: handleEIP712DomainChanged
         - event: ProposalCanceled(uint256)
           handler: handleProposalCanceled
         - event: ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)
