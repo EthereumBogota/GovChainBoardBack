@@ -13,7 +13,7 @@ import {
   VoteCastWithParams,
   VotingDelaySet,
   VotingPeriodSet
-} from "../generated/GovernorContract/GovernorContract"
+} from "../generated/Governor/Governor"
 
 export function createEIP712DomainChangedEvent(): EIP712DomainChanged {
   let eip712DomainChangedEvent = changetype<EIP712DomainChanged>(newMockEvent())
