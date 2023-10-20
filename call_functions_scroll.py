@@ -20,6 +20,6 @@ class ScrollCalls:
             print(data)
         else:
             print(f"La solicitud GET falló con el código de estado: {response.status_code}")
-            data = {"error": "error conection"}
+            data = {"error": "error connection"}
 
         return dict(data)
