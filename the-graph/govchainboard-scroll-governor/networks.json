@@ -1,0 +1,8 @@
+{
+  "scroll-sepolia": {
+    "Governor": {
+      "address": "0xC00368C16709c0A5eE9FC3294eA00E351f50Db69",
+      "startBlock": 1705816
+    }
+  }
+}
