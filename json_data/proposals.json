@@ -1,0 +1,8 @@
+{
+    "id_proposal": 1,
+    "description": "Create video DAO",
+    "proposer_wallet": "0x1d870f1210e66cba98093682b84d4491Ec04141b",
+    "Quorum": 3,
+    "beginDate": 1697770520,
+    "endDate": 1697856920
+}

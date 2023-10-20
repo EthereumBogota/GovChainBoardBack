@@ -1,0 +1,35 @@
+[
+  {
+    "wallet": "0x1d870f1210e66cba98093682b84d4491Ec04141b",
+    "vote": [
+      "for",
+      "against",
+      "abstain"
+    ],
+    "reason": "Positive vote",
+    "voteDate": 1697766920,
+    "proposal_id": 1
+  },
+  {
+    "wallet": "0x29b3a662499d110173e91c8860585ab642268add",
+    "vote": [
+      "for",
+      "against",
+      "abstain"
+    ],
+    "reason": "Negative vote",
+    "voteDate": 1697680520,
+    "proposal_id": 1
+  },
+  {
+    "wallet": "0xfc58c26caf80ef110b4552c1accb0986de5142f3",
+    "vote": [
+      "for",
+      "against",
+      "abstain"
+    ],
+    "reason": "Positive vote",
+    "voteDate": 1697756120,
+    "proposal_id": 1
+  }
+]
