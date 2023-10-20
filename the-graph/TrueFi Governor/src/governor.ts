@@ -1,5 +1,4 @@
 import {
-  EIP712DomainChanged as EIP712DomainChangedEvent,
   ProposalCanceled as ProposalCanceledEvent,
   ProposalCreated as ProposalCreatedEvent,
   ProposalExecuted as ProposalExecutedEvent,
@@ -13,7 +12,6 @@ import {
   VotingPeriodSet as VotingPeriodSetEvent
 } from "../generated/Governor/Governor"
 import {
-  EIP712DomainChanged,
   ProposalCanceled,
   ProposalCreated,
   ProposalExecuted,
@@ -26,20 +24,6 @@ import {
   VotingDelaySet,
   VotingPeriodSet
 } from "../generated/schema"
-
-export function handleEIP712DomainChanged(
-  event: EIP712DomainChangedEvent
-): void {
-  let entity = new EIP712DomainChanged(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
 
 export function handleProposalCanceled(event: ProposalCanceledEvent): void {
   let entity = new ProposalCanceled(
@@ -60,14 +44,12 @@ export function handleProposalCreated(event: ProposalCreatedEvent): void {
   )
   entity.proposalId = event.params.proposalId
   entity.proposer = event.params.proposer
-
-  // entity.targets = event.params.targets
-  entity.targets = []
+  entity.targets = event.params.targets
   entity.values = event.params.values
   entity.signatures = event.params.signatures
   entity.calldatas = event.params.calldatas
-  entity.voteStart = event.params.voteStart
-  entity.voteEnd = event.params.voteEnd
+  entity.startBlock = event.params.startBlock
+  entity.endBlock = event.params.endBlock
   entity.description = event.params.description
 
   entity.blockNumber = event.block.number
@@ -95,7 +77,7 @@ export function handleProposalQueued(event: ProposalQueuedEvent): void {
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
   entity.proposalId = event.params.proposalId
-  entity.etaSeconds = event.params.etaSeconds
+  entity.eta = event.params.eta
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
