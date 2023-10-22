@@ -64,7 +64,8 @@ async def enrich_proposal_description(*, contract_id: str, proposals: dict[str, 
         "Protocol Upgrades",
         "Strategic Direction"
     ]
-    . Give only a json list of the words that correspond. Nothing else, if is empty then []
+    . Give only a json list of the words that correspond. Nothing else, if is empty then [], do not give hints or any other indication.
+    only return a List not a Dict or any other data type.
 
     '''
 
@@ -89,10 +90,10 @@ async def enrich_proposal_description(*, contract_id: str, proposals: dict[str, 
     # TODO:  save resultado on Web3.Storage
     # Connect to web3_storage
     w3 = w3storage.API(token=os.environ["WEB3STORAGE_KEY"])
-    some_uploads = w3.user_uploads(size=25)
+    # some_uploads = w3.user_uploads(size=25)
 
-    CID = w3.post_upload((resultado, 'enrich_proposal_description'))
-    
+    CID = w3.post_upload(( 'enrich_proposal_description.json',"resultado" ))
+    print(CID)
     # Save Cid y Id of the contract on DB and Datetime
     event = IndexDataBasin(cid=CID, contract_id=contract_id)
     db.add(event)

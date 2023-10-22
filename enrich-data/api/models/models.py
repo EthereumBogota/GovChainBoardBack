@@ -16,7 +16,7 @@ from enum import Enum
 
 
 class IndexDataBasin(SQLModel, table=True):
-    cid: str = Field(primary_key=True, max_length=50)
+    cid: str = Field(primary_key=True, max_length=62)
     contract_id:  str = Field(max_length=30)
 
     created_at: datetime = Field(default=datetime.utcnow(), nullable=False)
