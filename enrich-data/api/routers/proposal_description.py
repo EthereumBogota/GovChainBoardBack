@@ -17,7 +17,7 @@ import os
 import openai
 
 import w3storage
-
+import json
 
 
 
@@ -64,8 +64,8 @@ async def enrich_proposal_description(*, contract_id: str, proposals: dict[str, 
         "Protocol Upgrades",
         "Strategic Direction"
     ]
-    . Give only a json list of the words that correspond. Nothing else, if is empty then [], do not give hints or any other indication.
-    only return a List not a Dict or any other data type.
+    . Give only a json list ef máximum 5 elements of the words that correspond. Nothing else, if is empty then [], do not give hints or any other indication.
+    only return a List not a Dict or any other data type. Do not ask for more information. If you do not know the return []. 
 
     '''
 
@@ -92,14 +92,14 @@ async def enrich_proposal_description(*, contract_id: str, proposals: dict[str, 
     w3 = w3storage.API(token=os.environ["WEB3STORAGE_KEY"])
     # some_uploads = w3.user_uploads(size=25)
 
-    CID = w3.post_upload(( 'enrich_proposal_description.json',"resultado" ))
-    print(CID)
+    cid = w3.post_upload(( 'enrich_proposal_description3.json',json.dumps(resultado, indent = 4) ))
+    print(cid)
     # Save Cid y Id of the contract on DB and Datetime
-    event = IndexDataBasin(cid=CID, contract_id=contract_id)
+    event = IndexDataBasin(cid=cid, contract_id=contract_id)
     db.add(event)
     db.commit()
 
-    return {CID, resultado} # Or CID
+    return resultado # Or CID
 
 
 @router.get("/contract_data_cid")

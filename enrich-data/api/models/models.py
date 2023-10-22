@@ -16,6 +16,7 @@ from enum import Enum
 
 
 class IndexDataBasin(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
     cid: str = Field(primary_key=True, max_length=62)
     contract_id:  str = Field(max_length=30)
 
