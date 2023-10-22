@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 atxt1">
+    
+    {% if not filesList %}
+        <h3>There are no files</h3>
+    {% else %}
+        <ul>
+            {% for file in filesList %}
+                <li>
+                    {{ file }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+    
+<div class="container mb-5 atxt1">
+
+    <div class="col-11 mx-auto">
+        <div class="row">
+            <div class="col-4 mx-auto mt-5">
+                <img src="/static/img/3_1_ETH_CO_BOGOTA.png" class="imgpage" alt="XLS" />
+            </div>
+
+            <div class="col-8 mx-auto mt-5">
+                <div class="col-11 mx-auto mt-5">
+                    <h1>GCB GovChainBoard</h1>
+                </div>
+                <div class="col-11 mx-auto mt-3 mb-5">
+                    <p>Coneccion to Web3.Storage.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="col-12 mx-auto mt-5">
+        <div class="row">
+            <div class="col-7 mx-auto mb-3">
+
+                <div class="col-12 mx-auto">
+                    <h2></h2>
+                    <form action="/loadFile" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="fileinn" class="form-label">File to load to web3.Storage</label>
+                            <input class="form-control" type="file" name="fileinn" required>
+                        </div>
+                        
+                        <div class="col-7 mx-auto">
+                            <div class="d-grid gap-2">
+                                <button id="butSpin" class="btn btn-primary btn-sm btn-color mt-3" type="submit" name="submit">Procesar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="col-11 mx-auto mb-3">
+                    <h3>Para subirarchibos a Web3.Storage</h3>
+                    <hr>
+                    <a class="btn btn-success" href="xxxxxxx.xlsx"></a>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="static/js/w3token.js"></script>
+
+{% endblock %}
