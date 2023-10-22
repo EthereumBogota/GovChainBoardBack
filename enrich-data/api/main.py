@@ -17,6 +17,7 @@ from api.routers import proposal_description
 
 
 if os.environ["ENVIRONMENT"] == "PROD":
+    # create_db_and_tables()
     pass
 else:
     # --------------------------------------

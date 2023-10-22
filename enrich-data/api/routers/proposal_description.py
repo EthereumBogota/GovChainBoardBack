@@ -99,7 +99,7 @@ async def enrich_proposal_description(*, contract_id: str, proposals: dict[str, 
     db.add(event)
     db.commit()
 
-    return resultado # Or CID
+    return {CID, resultado} # Or CID
 
 
 @router.get("/contract_data_cid")
