@@ -106,4 +106,7 @@ async def enrich_proposal_description(*, contract_id: str, proposals: dict[str, 
 @router.get("/contract_data_cid")
 async def get_cid(*,contract_id: str,  db: Session = Depends(get_session)):
     latest_event = db.query(IndexDataBasin).filter(IndexDataBasin.contract_id == contract_id).order_by(desc(IndexDataBasin.created_at)).first()
+    
+    if(not latest_event):
+        return False
     return latest_event
