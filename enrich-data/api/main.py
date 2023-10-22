@@ -14,6 +14,7 @@ from fastapi.responses import RedirectResponse
 from api.services.database import sqlite_file_name, create_db_and_tables
 from api.services.dummy_data import create_dummy_data
 from api.routers import proposal_description
+from fastapi.middleware.cors import CORSMiddleware
 
 
 if os.environ["ENVIRONMENT"] == "PROD":
@@ -53,6 +54,17 @@ app = FastAPI(
         "url": "https://opensource.org/licenses/MIT",
     },
 )
+
+origins = ["*"]  # You can specify a list of allowed origins instead of "*"
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  # You can specify specific HTTP methods if needed
+    allow_headers=["*"],  # You can specify specific headers if needed
+)
+
  
 @app.get("/", summary="Root Redirect", description="Redirect to ReDoc Documentation")
 async def root_redirect(): return RedirectResponse("/docs")
