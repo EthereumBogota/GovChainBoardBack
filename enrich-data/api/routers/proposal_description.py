@@ -18,6 +18,7 @@ import openai
 
 import w3storage
 import json
+import uuid
 
 
 
@@ -95,7 +96,7 @@ async def enrich_proposal_description(*, contract_id: str, proposals: dict[str, 
     cid = w3.post_upload(( 'enrich_proposal_description3.json',json.dumps(resultado, indent = 4) ))
     print(cid)
     # Save Cid y Id of the contract on DB and Datetime
-    event = IndexDataBasin(cid=cid, contract_id=contract_id)
+    event = IndexDataBasin(personalized_id=uuid.uuid4(),cid=cid, contract_id=contract_id)
     db.add(event)
     db.commit()
 
