@@ -1,0 +1,63 @@
+# SQLite database
+*.sqlite
+
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment and virtual environment files
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Ignore IDE files
+.vscode/
+.idea/
+
+# Ignore compiled files and build artifacts
+*.egg-info/
+dist/
+build/
+*.egg
+*.pyd
+*.pyc
+*.pyo
+*.pyz
+*.pyw
+
+# Ignore local development files
+db.sqlite3
+*.sqlite3
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore any other temporary or generated files
+*.swp
+*.swo
+*.class
+*.cache
+*.seed
+*.pid
+*.tmp
+*.tmp.*
+*.retry
+*~
+*.bak
+*.csv
+*.dat
+*.db
+*.db-shm
+*.db-wal
+*.zip
+*.tar.gz
+*.rar
+.idea/
+.vscode/
