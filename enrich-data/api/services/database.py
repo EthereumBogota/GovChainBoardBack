@@ -16,7 +16,7 @@ if os.environ["ENVIRONMENT"] == "PROD":
     DB_PORT = os.environ["DB_PORT"]
     DB_URL = os.environ["DB_URL"]
  
-    DATABASE_URL = f"postgresql://{DB_USERNAME}:{DB_PASSWORD}@{DB_URL}:{DB_PORT}/meedapp_db"
+    DATABASE_URL = f"postgresql://{DB_USERNAME}:{DB_PASSWORD}@{DB_URL}:{DB_PORT}/govchainboard2"
     engine = create_engine(DATABASE_URL, 
                          #echo=True,  # UNCOMMENT THIS LINE IF YOU WHANT TO SEE ALL THE DATABASE LOGS
                         )
